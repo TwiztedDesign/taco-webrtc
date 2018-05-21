@@ -1,0 +1,75 @@
+{
+  "name": "taco-extension-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll",
+    "cover": "jest --coverage",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "prebuild": "rimraf dist",
+    "watch": "webpack -w",
+    "build": "npm-run-all --parallel build:*",
+    "!build:main": "babel --copy-files --out-dir npmdist --ignore *.test.js src",
+    "build:umd": "webpack",
+    "!build:umd.min": "webpack --output-filename taco.min.js -p"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "taco",
+    "broadcast",
+    "graphics"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TwiztedDesign/taco-extension-boilerplate.git"
+  },
+  "author": "Danny Umansky <dok.umansky@twizted-design.com> (http://www.twizted-design.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TwiztedDesign/taco-extension-boilerplate/issues"
+  },
+  "homepage": "https://github.com/TwiztedDesign/taco-extension-boilerplate#readme",
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.0",
+    "babel-jest": "22.2.2",
+    "babel-loader": "7.1.2",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-es2015": "6.24.1",
+    "babel-register": "6.26.0",
+    "css-loader": "0.28.9",
+    "eslint": "4.15.0",
+    "eslint-loader": "1.9.0",
+    "fs-extra": "5.0.0",
+    "ghooks": "2.0.2",
+    "jest": "22.2.2",
+    "json-loader": "0.5.7",
+    "node-sass": "4.7.2",
+    "npm-run-all": "4.1.2",
+    "regenerator-runtime": "0.11.1",
+    "rimraf": "2.6.2",
+    "sass-loader": "6.0.6",
+    "script-loader": "0.7.2",
+    "style-loader": "0.20.1",
+    "webpack": "3.10.0",
+    "webpack-shell-plugin": "0.5.0"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "jest": {
+    "resetMocks": true,
+    "coverageReporters": [
+      "lcov"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
+  }
+}
