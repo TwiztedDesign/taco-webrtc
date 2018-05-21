@@ -1,7 +1,7 @@
 var fs = require('fs-extra');
 var config = require("./build.config.json");
 
-var files = ['tacoExt.js','tacoExt.js.map'];
+var files = ['taco.js','taco.js.map'];
 var source = './dist/';
 
 function copyCB(src,dest){

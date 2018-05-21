@@ -1,7 +1,15 @@
-if(!window.taco) throw new Error('Taco is not defined');
-var taco = window.taco;
+import VideoStream from './video-stream';
 
-var EXTENSION_NAME = 'my-taco-extension-name';
+if(!window.taco) throw new Error('Taco is not defined');
+const taco = window.taco;
+
+const EXTENSION_NAME = 'taco-webrtc';
+
+function define(name, element) {
+    customElements.define(name, element);
+}
+
+define("video-stream", VideoStream);
 
 taco[EXTENSION_NAME] = {
     //All the extension functions go here

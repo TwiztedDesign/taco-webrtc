@@ -6,7 +6,7 @@ const include = join(__dirname, 'src');
 module.exports =  {
     entry               : './src/index.js',
     output              : {
-        filename        : "tacoExt.js",
+        filename        : "taco.js",
         path            : join(__dirname, 'dist')
 
     },
