@@ -164,7 +164,10 @@ export default class VideoBox extends HTMLElement {
     set src(value) {
         this.setAttribute('src', value);
         clearInterval(this.canvasDrawTimeout);
-        this.initStream(value);
+        if(value){
+            this.initStream(value);
+        }
+
     }
 
 

@@ -289,7 +289,9 @@ var VideoBox = function (_HTMLElement) {
         set: function set(value) {
             this.setAttribute('src', value);
             clearInterval(this.canvasDrawTimeout);
-            this.initStream(value);
+            if (value) {
+                this.initStream(value);
+            }
         }
     }], [{
         key: 'observedAttributes',
