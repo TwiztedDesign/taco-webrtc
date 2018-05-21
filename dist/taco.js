@@ -203,7 +203,9 @@ var VideoStream = function (_HTMLElement) {
                 context.drawImage(video, 0, 0, context.canvas.width, context.canvas.height);
                 // }
             });
-            self.canvasDrawTimeout = setTimeout(self.draw, 20, video, contexts);
+            self.canvasDrawTimeout = setTimeout(function () {
+                self.draw(video, contexts);
+            }, 20);
         }
     }, {
         key: 'initStream',
