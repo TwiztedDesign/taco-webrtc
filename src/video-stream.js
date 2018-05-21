@@ -77,7 +77,7 @@ export default class VideoStream extends HTMLElement {
         });
 
         video.addEventListener('play', function(){
-            self.draw(self, contexts);
+            self.draw(video, contexts);
         },false);
     }
 
