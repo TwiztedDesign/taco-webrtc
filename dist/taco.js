@@ -70,22 +70,22 @@
 "use strict";
 
 
-var _videoStream = __webpack_require__(1);
+var _videoBox = __webpack_require__(1);
 
-var _videoStream2 = _interopRequireDefault(_videoStream);
+var _videoBox2 = _interopRequireDefault(_videoBox);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 if (!window.taco) throw new Error('Taco is not defined');
 var taco = window.taco;
 
-var EXTENSION_NAME = 'taco-webrtc';
+var EXTENSION_NAME = 'taco-video-box';
 
 function define(name, element) {
     customElements.define(name, element);
 }
 
-define("video-stream-webrtc", _videoStream2.default);
+define("video-box", _videoBox2.default);
 
 taco[EXTENSION_NAME] = {
     //All the extension functions go here
@@ -112,26 +112,29 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var WebRTC = __webpack_require__(2);
 
-var VideoStream = function (_HTMLElement) {
-    _inherits(VideoStream, _HTMLElement);
+var VideoBox = function (_HTMLElement) {
+    _inherits(VideoBox, _HTMLElement);
 
-    function VideoStream() {
-        _classCallCheck(this, VideoStream);
+    function VideoBox() {
+        _classCallCheck(this, VideoBox);
 
-        return _possibleConstructorReturn(this, (VideoStream.__proto__ || Object.getPrototypeOf(VideoStream)).call(this));
+        return _possibleConstructorReturn(this, (VideoBox.__proto__ || Object.getPrototypeOf(VideoBox)).call(this));
     }
 
-    _createClass(VideoStream, [{
+    _createClass(VideoBox, [{
         key: 'connectedCallback',
         value: function connectedCallback() {
-            var html = '<div class="video-container" style="width: 100%; height: 100%;">' + '   <canvas class="canvas" style="width: 100%; height: 100%;"></canvas>' + '</div>';
+            var html = '<div style="width: 100%; height: 100%;">' + '   <canvas class="canvas" style="width: 100%; height: 100%;"></canvas>' + '</div>';
 
             this.innerHTML = html;
-            this.initStream(this.source);
+            if (window.taco.isController) return;
+            this.initStream(this.src);
         }
     }, {
         key: 'disconnectedCallback',
-        value: function disconnectedCallback() {}
+        value: function disconnectedCallback() {
+            clearInterval(this.canvasDrawTimeout);
+        }
     }, {
         key: 'attributeChangedCallback',
         value: function attributeChangedCallback() {}
@@ -144,9 +147,9 @@ var VideoStream = function (_HTMLElement) {
 
             video.setAttribute('loop', '');
             video.setAttribute('autoplay', 'true');
-            video.setAttribute('controls', '');
-            video.setAttribute('width', '100%');
-            video.setAttribute('height', '100%');
+            // video.setAttribute('controls', '');
+            // video.setAttribute('width', '100%');
+            // video.setAttribute('height', '100%');
 
             self.videoEl = video;
 
@@ -265,7 +268,7 @@ var VideoStream = function (_HTMLElement) {
         key: 'expose',
         value: function expose() {
             return {
-                source: 'source'
+                src: 'src'
             };
         }
     }, {
@@ -279,24 +282,26 @@ var VideoStream = function (_HTMLElement) {
             return this._streamId;
         }
     }, {
-        key: 'source',
+        key: 'src',
         get: function get() {
-            return this.getAttribute("source");
+            return this.getAttribute("src");
         },
         set: function set(value) {
-            this.setAttribute('source', value);
+            this.setAttribute('src', value);
+            clearInterval(this.canvasDrawTimeout);
+            this.initStream(value);
         }
     }], [{
         key: 'observedAttributes',
         get: function get() {
-            return ['result', 'mode', 'minValueX', 'minValueY', 'maxValueX', 'maxValueY', 'precision'];
+            return [];
         }
     }]);
 
-    return VideoStream;
+    return VideoBox;
 }(HTMLElement);
 
-exports.default = VideoStream;
+exports.default = VideoBox;
 
 /***/ }),
 /* 2 */

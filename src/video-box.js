@@ -1,26 +1,27 @@
 const WebRTC = require('./simplewebrtc.bundle');
 
-export default class VideoStream extends HTMLElement {
+export default class VideoBox extends HTMLElement {
     constructor() {
         super();
     }
 
     connectedCallback() {
         var html =
-            '<div class="video-container" style="width: 100%; height: 100%;">'+
+            '<div style="width: 100%; height: 100%;">'+
             '   <canvas class="canvas" style="width: 100%; height: 100%;"></canvas>'+
             '</div>';
 
         this.innerHTML = html;
-        this.initStream(this.source);
+        if(window.taco.isController) return;
+        this.initStream(this.src);
     }
 
     disconnectedCallback() {
-
+        clearInterval(this.canvasDrawTimeout);
     }
 
     static get observedAttributes() {
-        return ['result','mode', 'minValueX', 'minValueY', 'maxValueX', 'maxValueY', 'precision'];
+        return [];
     }
 
     attributeChangedCallback() {
@@ -34,9 +35,9 @@ export default class VideoStream extends HTMLElement {
 
         video.setAttribute('loop', '');
         video.setAttribute('autoplay', 'true');
-        video.setAttribute('controls', '');
-        video.setAttribute('width', '100%');
-        video.setAttribute('height', '100%');
+        // video.setAttribute('controls', '');
+        // video.setAttribute('width', '100%');
+        // video.setAttribute('height', '100%');
 
         self.videoEl = video;
 
@@ -157,17 +158,19 @@ export default class VideoStream extends HTMLElement {
     get stream() {
         return this._streamId;
     }
-    get source() {
-        return this.getAttribute("source");
+    get src() {
+        return this.getAttribute("src");
     }
-    set source(value) {
-        this.setAttribute('source', value);
+    set src(value) {
+        this.setAttribute('src', value);
+        clearInterval(this.canvasDrawTimeout);
+        this.initStream(value);
     }
 
 
     expose(){
         return {
-            source  : 'source'
+            src  : 'src'
         };
     }
 
