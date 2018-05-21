@@ -160,6 +160,9 @@ export default class VideoStream extends HTMLElement {
     get source() {
         return this.getAttribute("source");
     }
+    set source(value) {
+        this.setAttribute('source', value);
+    }
 
 
     expose(){

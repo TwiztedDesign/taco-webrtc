@@ -282,6 +282,9 @@ var VideoStream = function (_HTMLElement) {
         key: 'source',
         get: function get() {
             return this.getAttribute("source");
+        },
+        set: function set(value) {
+            this.setAttribute('source', value);
         }
     }], [{
         key: 'observedAttributes',
