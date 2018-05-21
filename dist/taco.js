@@ -3896,7 +3896,8 @@ i=callbacks.indexOf(fn);callbacks.splice(i,1);if(callbacks.length===0){delete th
 prototype.emit=function(event){this.callbacks=this.callbacks||{};var args=[].slice.call(arguments,1),callbacks=this.callbacks[event],specialCallbacks=this.getWildcardCallbacks(event),i,len,item,listeners;if(callbacks){listeners=callbacks.slice();for(i=0,len=listeners.length;i<len;++i){if(!listeners[i]){break;}listeners[i].apply(this,args);}}if(specialCallbacks){len=specialCallbacks.length;listeners=specialCallbacks.slice();for(i=0,len=listeners.length;i<len;++i){if(!listeners[i]){break;}listeners[i].apply(this,[event].concat(args));}}return this;};// Helper for for finding special wildcard event handlers that match the event
 prototype.getWildcardCallbacks=function(eventName){this.callbacks=this.callbacks||{};var item,split,result=[];for(item in this.callbacks){split=item.split('*');if(item==='*'||split.length===2&&eventName.slice(0,split[0].length)===split[0]){result=result.concat(this.callbacks[item]);}}return result;};};WildEmitter.mixin(WildEmitter);},{}],76:[function(require,module,exports){/**
  * Module dependencies.
- */var global=function(){return this;}();/**
+ */var global=window;//(function() { return this; })();
+/**
  * WebSocket constructor.
  */var WebSocket=global.WebSocket||global.MozWebSocket;/**
  * Module exports.

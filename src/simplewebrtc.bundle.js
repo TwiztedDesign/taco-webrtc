@@ -18907,7 +18907,7 @@ WildEmitter.mixin(WildEmitter);
  * Module dependencies.
  */
 
-var global = (function() { return this; })();
+var global = window//(function() { return this; })();
 
 /**
  * WebSocket constructor.
