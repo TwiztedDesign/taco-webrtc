@@ -199,9 +199,9 @@ var VideoStream = function (_HTMLElement) {
             contexts = Array.isArray(contexts) ? contexts : [contexts];
             if (video.paused || video.ended) return false;
             contexts.forEach(function (context) {
-                if (self[context.name].visibility) {
-                    context.drawImage(video, 0, 0, context.canvas.width, context.canvas.height);
-                }
+                // if(self[context.name].visibility){
+                context.drawImage(video, 0, 0, context.canvas.width, context.canvas.height);
+                // }
             });
             self.canvasDrawTimeout = setTimeout(self.draw, 20, video, contexts);
         }
