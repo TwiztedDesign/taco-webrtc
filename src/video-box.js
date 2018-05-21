@@ -88,15 +88,20 @@ export default class VideoBox extends HTMLElement {
         contexts = Array.isArray(contexts)? contexts : [contexts];
         if(video.paused || video.ended) return false;
         contexts.forEach(function(context) {
-            // if(self[context.name].visibility){
+            if(self.isVisible()){
                 context.drawImage(video, 0, 0, context.canvas.width, context.canvas.height);
-            // }
+            }
         });
         self.canvasDrawTimeout = setTimeout(
             function(){
                 self.draw(video, contexts);
             }, 20);
     }
+
+    isVisible() {
+        return (this.offsetParent !== null);
+    }
+
 
 
     initStream(url) {
