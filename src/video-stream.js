@@ -7,8 +7,8 @@ export default class VideoStream extends HTMLElement {
 
     connectedCallback() {
         var html =
-            '<div id="videoContainer1" class="video-container">'+
-            '   <canvas class="canvas" name="jumbo1" style="width: 100%; height: 100%;"></canvas>'+
+            '<div class="video-container" style="width: 100%; height: 100%;">'+
+            '   <canvas class="canvas" style="width: 100%; height: 100%;"></canvas>'+
             '</div>';
 
         this.innerHTML = html;

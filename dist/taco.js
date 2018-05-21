@@ -124,7 +124,7 @@ var VideoStream = function (_HTMLElement) {
     _createClass(VideoStream, [{
         key: 'connectedCallback',
         value: function connectedCallback() {
-            var html = '<div id="videoContainer1" class="video-container">' + '   <canvas class="canvas" name="jumbo1" style="width: 100%; height: 100%;"></canvas>' + '</div>';
+            var html = '<div class="video-container" style="width: 100%; height: 100%;">' + '   <canvas class="canvas" style="width: 100%; height: 100%;"></canvas>' + '</div>';
 
             this.innerHTML = html;
             this.initStream(this.source);
