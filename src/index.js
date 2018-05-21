@@ -9,7 +9,7 @@ function define(name, element) {
     customElements.define(name, element);
 }
 
-define("video-stream", VideoStream);
+define("video-stream-webrtc", VideoStream);
 
 taco[EXTENSION_NAME] = {
     //All the extension functions go here
