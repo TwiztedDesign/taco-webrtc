@@ -294,7 +294,7 @@ var VideoBox = function (_HTMLElement) {
         set: function set(value) {
             this.setAttribute('src', value);
             clearInterval(this.canvasDrawTimeout);
-            if (value) {
+            if (value && !window.taco.isController) {
                 this.initStream(value);
             }
         }

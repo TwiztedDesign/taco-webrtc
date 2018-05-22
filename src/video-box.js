@@ -169,7 +169,7 @@ export default class VideoBox extends HTMLElement {
     set src(value) {
         this.setAttribute('src', value);
         clearInterval(this.canvasDrawTimeout);
-        if(value){
+        if(value && !window.taco.isController){
             this.initStream(value);
         }
 
