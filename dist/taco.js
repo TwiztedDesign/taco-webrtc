@@ -127,8 +127,10 @@ var VideoBox = function (_HTMLElement) {
             var html = '<div style="width: 100%; height: 100%;">' + '   <canvas class="canvas" style="width: 100%; height: 100%;"></canvas>' + '</div>';
 
             this.innerHTML = html;
-            if (window.taco.isController) return;
-            this.initStream(this.src);
+
+            if (this.src && !window.taco.isController) {
+                this.initStream(this.src);
+            }
         }
     }, {
         key: 'disconnectedCallback',

@@ -12,8 +12,10 @@ export default class VideoBox extends HTMLElement {
             '</div>';
 
         this.innerHTML = html;
-        if(window.taco.isController) return;
-        this.initStream(this.src);
+
+        if(this.src && !window.taco.isController){
+            this.initStream(this.src);
+        }
     }
 
     disconnectedCallback() {
