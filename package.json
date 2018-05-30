@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll",
-    "cover": "jest --coverage",
+    "test": "jest --coverage --no-cache",
+    "test-watch": "jest --watchAll",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "prebuild": "rimraf dist",
@@ -70,6 +70,9 @@
     ],
     "collectCoverageFrom": [
       "src/**/*.js"
+    ],
+    "coveragePathIgnorePatterns" :[
+      "src/simplewebrtc.*"
     ]
   }
 }
